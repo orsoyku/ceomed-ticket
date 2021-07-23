@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
+import { Switch, Route } from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -152,8 +152,9 @@ const App = () => {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
-                   <CardList/>
-
+                    <Switch>
+                        <Route exact path="/" component={CardList}></Route>
+                    </Switch>
                 </Container>
             </main>
         </div>
