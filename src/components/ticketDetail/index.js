@@ -79,7 +79,6 @@ export default function TicketDetail(props) {
                 id="outlined-textarea"
                 label="Answer"
                 multiline
-                value={props.ticket.message}
                 className={classes.message}
                 variant="outlined"
                 rows={8}
