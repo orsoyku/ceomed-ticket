@@ -15,14 +15,11 @@ import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  background:{
-      backgroundColor:'#F9F3F3'
-
+    margin:"20px 60px 20px 60px",
+    width:'85vh'
   },
   message: {
     width:'100%'
@@ -37,21 +34,22 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: theme.palette.warning.main,
   },
 }));
 
-export default function TicketDetail(props) {
+export default function TicketDetail({ticket}) {
   const classes = useStyles();
-    console.log(props.ticket)
+  console.log(ticket)
   return (
-   <Container className={classes.background} component="main" maxWidth="xs">
+   <Container  component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      {ticket &&  <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Meeting with the User
+          Contact with the {ticket.requester}
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -68,10 +66,27 @@ export default function TicketDetail(props) {
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="subject"
+                label="Subject"
+                name="subject"
+                inputProps={
+                  { readOnly: true, }
+                }
+                value={ticket.subject}
+              />
+            </Grid>
+            <Grid item xs={12}>
+            <TextField
+                id="outlined-textarea"
+                label="Message"
+                multiline
+                value={ticket.message}
+                className={classes.message}
+                variant="outlined"
+                inputProps={
+                  { readOnly: true, }
+                }
+                rows={6}
               />
             </Grid>
             <Grid item xs={12}>
@@ -81,13 +96,13 @@ export default function TicketDetail(props) {
                 multiline
                 className={classes.message}
                 variant="outlined"
-                rows={8}
+                rows={6}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="Mark as read."
               />
             </Grid>
           </Grid>
@@ -95,20 +110,20 @@ export default function TicketDetail(props) {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
             className={classes.submit}
           >
-            Sign Up
+            Send
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
-                Lorem ipsum dolornemo, modque perferendis culpa ad corrupti, sunt eius?
+                {ticket.date}
               </Link>
             </Grid>
           </Grid>
         </form>
-      </div>
+      </div> }
+     
     </Container>
    
   );
