@@ -77,7 +77,7 @@ const TicketCard = (props) => {
       <CssBaseline />
       <Paper square className={classes.paper}>
         <Typography className={classes.text} variant="h5" gutterBottom>
-          Tickets
+          MailBox
         </Typography>
         <List className={classes.list}>
           {props.tickets.map(ticket => (
