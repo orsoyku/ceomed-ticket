@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     paddingBottom: 50,
     width: '75vh',
-    margin: "20px 60px 20px 60px"
+    margin: "20px 60px 20px 85px"
   },
   list: {
     marginBottom: theme.spacing(2),

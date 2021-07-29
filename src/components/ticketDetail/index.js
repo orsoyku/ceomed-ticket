@@ -18,11 +18,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    margin:"20px 60px 20px 60px",
-    width:'85vh'
+    margin: "20px 60px 20px 60px",
+    width: '85vh'
   },
   message: {
-    width:'100%'
+    width: '100%'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -38,13 +38,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TicketDetail({ticket}) {
+export default function TicketDetail({ ticket }) {
   const classes = useStyles();
   console.log(ticket)
   return (
-   <Container  component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
-      {ticket &&  <div className={classes.paper}>
+      {ticket && <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -53,30 +53,16 @@ export default function TicketDetail({ticket}) {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-            <Typography variant="subtitle2" gutterBottom>
-                  
-            </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-
+            <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom>
+                {ticket.subject}    
+              </Typography>
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="subject"
-                label="Subject"
-                name="subject"
-                inputProps={
-                  { readOnly: true, }
-                }
-                value={ticket.subject}
-              />
-            </Grid>
-            <Grid item xs={12}>
-            <TextField
+              <Typography variant="subtitle1" gutterBottom>
+                {ticket.message}  
+              </Typography>
+              {/* <TextField
                 id="outlined-textarea"
                 label="Message"
                 multiline
@@ -87,10 +73,10 @@ export default function TicketDetail({ticket}) {
                   { readOnly: true, }
                 }
                 rows={6}
-              />
+              /> */}
             </Grid>
             <Grid item xs={12}>
-            <TextField
+              <TextField
                 id="outlined-textarea"
                 label="Answer"
                 multiline
@@ -122,9 +108,9 @@ export default function TicketDetail({ticket}) {
             </Grid>
           </Grid>
         </form>
-      </div> }
-     
+      </div>}
+
     </Container>
-   
+
   );
 }
