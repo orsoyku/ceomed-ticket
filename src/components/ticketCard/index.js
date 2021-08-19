@@ -16,6 +16,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as ticketActions from '../../redux/actions/ticketActions'
+import TicketSearch from '../ticketSearch';
 
 
 
@@ -79,6 +80,7 @@ const TicketCard = (props) => {
         <Typography className={classes.text} variant="h5" gutterBottom>
           MailBox
         </Typography>
+        <TicketSearch className="search" id="standard-search" label="Search Ticket" type="search"/>
         <List className={classes.list}>
           {props.tickets.map(ticket => (
             <div key={ticket.id} onClick={() => selectedTicket(ticket)} >
