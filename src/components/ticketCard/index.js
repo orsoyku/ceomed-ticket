@@ -16,6 +16,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as ticketActions from '../../redux/actions/ticketActions'
+import * as filterActions from '../../redux/actions/filterActions'
 import TicketSearch from '../ticketSearch';
 
 
@@ -69,10 +70,12 @@ const TicketCard = (props) => {
   }, [])
 
   const selectedTicket = ticket => {
-    console.log(ticket.id)
     props.actions.getTicket(ticket.id)
   }
-
+  const searchBySubject = e => {
+    console.log(e.target.value)
+    props.actions.searchBySubject(e.target.value)
+  }
   return (
     <React.Fragment>
       <CssBaseline />
@@ -80,7 +83,7 @@ const TicketCard = (props) => {
         <Typography className={classes.text} variant="h5" gutterBottom>
           MailBox
         </Typography>
-        <TicketSearch className="search" id="standard-search" label="Search Ticket" type="search"/>
+        <TicketSearch searchBySubject={searchBySubject} className="search" id="standard-search" label="Search Ticket" type="search"/>
         <List className={classes.list}>
           {props.tickets.map(ticket => (
             <div key={ticket.id} onClick={() => selectedTicket(ticket)} >
@@ -94,8 +97,6 @@ const TicketCard = (props) => {
                 <ListItemText primary={ticket.subject} secondary={ticket.message} />
               </ListItem>
             </div>
-
-
           ))}
         </List>
       </Paper>
@@ -114,7 +115,8 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: {
       getTickets: bindActionCreators(ticketActions.getTickets, dispatch),
-      getTicket: bindActionCreators(ticketActions.getTicket, dispatch)
+      getTicket: bindActionCreators(ticketActions.getTicket, dispatch),
+      searchBySubject: bindActionCreators(filterActions.filterBySubject,dispatch)
     }
   }
 }

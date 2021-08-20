@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TicketDetail({ ticket }) {
   const classes = useStyles();
-  console.log(ticket)
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
