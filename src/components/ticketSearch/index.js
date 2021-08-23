@@ -1,24 +1,18 @@
-import React,{useState} from 'react'
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
-
+import * as filterActions from '../../redux/actions/filterActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
-import * as filterActions from '../../redux/actions/filterActions';
-
-
 import './styles.scss'
-const TicketSearch = ({className,searchBySubject,id,label,type}) => {
-    const [search,setSearch] = useState('');
-
-    return (<>
-      <TextField value={search} onChange={searchBySubject} className={className} id={id} label={label} type={type}/>
-    </>)
-}
-
-function mapStateToProps(state) {
-  return {
-
+const TicketSearch = ({ search, className, id, label, type,actions }) => {
+  console.log(actions)
+  const handleOnChange = (event) => {
+    let value = event.target.value
+    actions.searchBySubject(value)
   }
+  return (<>
+    <TextField onChange={handleOnChange} value={search} className={className} id={id} label={label} type={type} />
+  </>)
 }
 
 
@@ -29,5 +23,7 @@ function mapDispatchToProps(dispatch) {
     }
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(TicketSearch);
+
+
+export default connect(null,mapDispatchToProps)(TicketSearch);
 

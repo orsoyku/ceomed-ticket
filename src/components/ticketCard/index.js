@@ -18,6 +18,7 @@ import { bindActionCreators } from "redux";
 import * as ticketActions from '../../redux/actions/ticketActions'
 import * as filterActions from '../../redux/actions/filterActions'
 import TicketSearch from '../ticketSearch';
+import {useSelector} from 'react-redux'
 
 
 
@@ -68,14 +69,13 @@ const TicketCard = (props) => {
   useEffect(() => {
     props.actions.getTickets()
   }, [])
-
+  
+  const searchedWord = useSelector((state)=>state.filterBySubjectReducer)
+  console.log("searchedWord",searchedWord)
   const selectedTicket = ticket => {
     props.actions.getTicket(ticket.id)
   }
-  const searchBySubject = e => {
-    console.log(e.target.value)
-    props.actions.searchBySubject(e.target.value)
-  }
+  
   return (
     <React.Fragment>
       <CssBaseline />
@@ -83,9 +83,9 @@ const TicketCard = (props) => {
         <Typography className={classes.text} variant="h5" gutterBottom>
           MailBox
         </Typography>
-        <TicketSearch searchBySubject={searchBySubject} className="search" id="standard-search" label="Search Ticket" type="search"/>
+        <TicketSearch  className="search" id="standard-search" label="Search Ticket" type="search"/>
         <List className={classes.list}>
-          {props.tickets.map(ticket => (
+          {props.tickets.filter(ticket=>ticket.subject.toLowerCase().includes(searchedWord.toLowerCase())).map(ticket => (
             <div key={ticket.id} onClick={() => selectedTicket(ticket)} >
               <ListSubheader className={classes.subheader}>{ticket.date}</ListSubheader>
               <ListItem button>
