@@ -109,8 +109,6 @@ export default function TicketDetail({ ticket }) {
           </Grid>
         </form>
       </div>}
-
     </Container>
-
   );
 }
