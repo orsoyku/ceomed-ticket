@@ -71,9 +71,9 @@ const TicketCard = (props) => {
   }, [])
   
   const searchedWord = useSelector((state)=>state.filterBySubjectReducer)
-  console.log("searchedWord",searchedWord)
   const selectedTicket = ticket => {
-    props.actions.getTicket(ticket.id)
+    props.actions.newTicketStatus(false);
+    props.actions.getTicket(ticket.id);
   }
   
   return (
@@ -116,7 +116,8 @@ function mapDispatchToProps(dispatch) {
     actions: {
       getTickets: bindActionCreators(ticketActions.getTickets, dispatch),
       getTicket: bindActionCreators(ticketActions.getTicket, dispatch),
-      searchBySubject: bindActionCreators(filterActions.filterBySubject,dispatch)
+      searchBySubject: bindActionCreators(filterActions.filterBySubject,dispatch),
+      newTicketStatus: bindActionCreators(ticketActions.newTicketStatus, dispatch),
     }
   }
 }

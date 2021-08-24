@@ -1,5 +1,6 @@
 export default {
     tickets:[],
     ticket:{},
-    searchedWord:''
+    searchedWord:'',
+    newTicket:false
 }

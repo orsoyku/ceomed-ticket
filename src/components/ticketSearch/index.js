@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import './styles.scss'
 const TicketSearch = ({ search, className, id, label, type,actions }) => {
-  console.log(actions)
   const handleOnChange = (event) => {
     let value = event.target.value
     actions.searchBySubject(value)
